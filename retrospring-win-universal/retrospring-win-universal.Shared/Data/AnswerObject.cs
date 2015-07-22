@@ -15,5 +15,18 @@ namespace retrospring_win_universal.Data
         public int question_id { get; set; }
         public AppObject created_with { get; set; }
         public long created_at { get; set; }
+
+        public override string ToString()
+        {
+            string answerStr = "";
+            answerStr += "(id: " + id + ") ";
+            answerStr += "\"" + answer + "\"";
+            if (user != null)
+            {
+                answerStr += " - by " + user.screen_name + (user.display_name != null ? user.display_name : "");
+            }
+
+            return answerStr;
+        }
     }
 }

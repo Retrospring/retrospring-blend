@@ -49,6 +49,15 @@ namespace retrospring_win_universal.Web
             return getResult<UserObject>("user/" + userID + "/profile.json");
         }
 
+        public static FollowerObject getUserFollower(int userID)
+        {
+            return getResult<FollowerObject>("user/" + userID + "/followers.json");
+        }
+
+        public static FollowingObject getUserFollowing(int userID)
+        {
+            return getResult<FollowingObject>("user/" + userID + "/following.json");
+        }
 
         public static QuestionObject getQuestion(int questionID)
         {

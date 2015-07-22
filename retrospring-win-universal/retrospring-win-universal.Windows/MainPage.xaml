@@ -19,6 +19,6 @@
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="30,45,0,0" TextWrapping="Wrap" Text="Retrospring" VerticalAlignment="Top" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1"/>
         <TextBlock x:Name="debugTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="463,53,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Style="{StaticResource BodyTextBlockStyle}"/>
         <Button x:Name="button" Grid.Column="1" Content="Load Stuff" HorizontalAlignment="Left" Margin="345,50,0,0" VerticalAlignment="Top" Click="button_Click"/>
-        <GridView x:Name="gridView" Grid.Column="1" Grid.Row="1"/>
+        <GridView x:Name="timelineGridView" Grid.Column="1" ItemsSource="{Binding}" Margin="10,78,-10,32" Grid.RowSpan="2"/>
     </Grid>
 </Page>

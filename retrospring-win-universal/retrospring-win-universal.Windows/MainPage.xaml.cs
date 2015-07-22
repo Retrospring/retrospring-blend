@@ -39,20 +39,32 @@ namespace retrospring_win_universal
             debugTextBlock.Text = result.screen_name.ToString();
             /*/
 
-            /* === PUBLIC TIMELINE
+            //* === PUBLIC TIMELINE
             TimelineObject result = JsonParser.getPublicTimeline();
             debugTextBlock.Text = result.count.ToString();
-            /*/
+
+            timelineGridView.DataContext = result.answers;
+            //*/
 
             /* === QUESTION
             QuestionObject result = JsonParser.getQuestion(1);
             debugTextBlock.Text = result.question;
             /*/
 
-            //* === ANSWER
+            /* === ANSWER
             AnswerObject result = JsonParser.getAnswer(1);
             debugTextBlock.Text = result.answer;
-            //*/
+            /*/
+
+            /* === FOLLOWER
+            FollowerObject result = JsonParser.getUserFollower(1);
+            debugTextBlock.Text = result.count.ToString();
+            /*/
+
+            /* === FOLLOWING
+            FollowingObject result = JsonParser.getUserFollowing(1);
+            debugTextBlock.Text = result.count.ToString();
+            /*/
         }
     }
 }
