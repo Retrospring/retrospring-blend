@@ -15,7 +15,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Data\AnswerObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\AppObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\QuestionObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\UserObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Web\JsonParser.cs" />
   </ItemGroup>
 </Project>

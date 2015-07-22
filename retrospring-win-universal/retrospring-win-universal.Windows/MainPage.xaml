@@ -17,7 +17,10 @@
             <RowDefinition Height="6*"/>
         </Grid.RowDefinitions>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="30,45,0,0" TextWrapping="Wrap" Text="Retrospring" VerticalAlignment="Top" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1"/>
-        <Grid Grid.Column="1" Grid.Row="1"/>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Button x:Name="button" Content="Load Stuff" HorizontalAlignment="Left" Margin="21,7,0,0" VerticalAlignment="Top" Click="button_Click"/>
+        </Grid>
+        <TextBlock x:Name="debugTextBlock" Grid.Column="1" HorizontalAlignment="Right" Margin="0,87,28,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>

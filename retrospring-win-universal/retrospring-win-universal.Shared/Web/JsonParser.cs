@@ -3,40 +3,33 @@ using System.Collections.Generic;
 using System.Text;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using Newtonsoft.Json;
 
 namespace retrospring_win_universal.Web
 {
-    abstract class JsonParser
+    class JsonParser
     {
-        private string parsedJson
+        private static string getJson(string parameter)
         {
-            get;
-            set;
-        }
-
-        private JsonParser()
-        {
-            //private constructor on purpose
-        }
-
-        public void parseJson(string url, List<string> parameters = null)
-        {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(url);
-
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            string parameterStr = "";
-            if (parameters != null)
+            using (HttpClient client = new HttpClient())
             {
-                parameterStr = "?";
-                foreach (string curPar in parameters)
-                {
-                    parameterStr += curPar + "&";
-                }
-            }
+                client.BaseAddress = new Uri("https://science.retrospring.net/api/sleipnir/");
 
-            HttpResponseMessage response = client.GetAsync(parameterStr).Result;
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                return client.GetStringAsync(parameter).Result;
+            }
+        }
+
+        public static string getPublicTimeline()
+        {
+            return getJson("user/public.json");
+        }
+
+        public static string getUserProfile(int userID)
+        {
+            return getJson("user/profile/" + userID + ".json");
         }
     }
 }
