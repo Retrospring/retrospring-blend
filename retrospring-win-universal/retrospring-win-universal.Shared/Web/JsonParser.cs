@@ -47,5 +47,10 @@ namespace retrospring_win_universal.Web
         {
             return getResult<QuestionObject>("question/" + questionID + ".json");
         }
+
+        public static AnswerObject getAnswer(int answerID)
+        {
+            return getResult<AnswerObject>("answer/" + answerID + ".json");
+        }
     }
 }

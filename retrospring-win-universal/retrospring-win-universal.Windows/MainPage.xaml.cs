@@ -44,9 +44,14 @@ namespace retrospring_win_universal
             debugTextBlock.Text = result.count.ToString();
             /*/
 
-            //* === QUESTION
+            /* === QUESTION
             QuestionObject result = JsonParser.getQuestion(1);
             debugTextBlock.Text = result.question;
+            /*/
+
+            //* === ANSWER
+            AnswerObject result = JsonParser.getAnswer(1);
+            debugTextBlock.Text = result.answer;
             //*/
         }
     }
