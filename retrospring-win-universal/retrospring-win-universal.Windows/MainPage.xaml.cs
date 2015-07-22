@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Newtonsoft.Json;
+using retrospring_win_universal.Data;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -33,7 +34,17 @@ namespace retrospring_win_universal
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            JsonParser.getPublicTimeline();
+            //* === USER
+            UserObject result = JsonParser.getUserProfile(1);
+            debugTextBlock.Text = result.screen_name.ToString();
+            //*/
+
+            /* === PUBLIC TIMELINE
+            TimelineObject result = JsonParser.getPublicTimeline();
+            debugTextBlock.Text = result.count.ToString();
+            */
+
+
         }
     }
 }

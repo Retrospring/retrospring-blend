@@ -4,6 +4,7 @@ using System.Text;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
+using retrospring_win_universal.Data;
 
 namespace retrospring_win_universal.Web
 {
@@ -22,14 +23,23 @@ namespace retrospring_win_universal.Web
             }
         }
 
-        public static string getPublicTimeline()
+        private static T getResult<T>(string path)
         {
-            return getJson("user/public.json");
+            ApiResultContainer<T> apiResultRef = new ApiResultContainer<T>();
+
+            ApiResultContainer<T> receivedRes = JsonConvert.DeserializeAnonymousType<ApiResultContainer<T>>(getJson(path), apiResultRef);
+
+            return receivedRes.result;
         }
 
-        public static string getUserProfile(int userID)
+        public static TimelineObject getPublicTimeline()
         {
-            return getJson("user/profile/" + userID + ".json");
+            return getResult<TimelineObject>("user/public.json");
+        }
+
+        public static UserObject getUserProfile(int userID)
+        {
+            return getResult<UserObject>("user/" + userID + "/profile.json");
         }
     }
 }
