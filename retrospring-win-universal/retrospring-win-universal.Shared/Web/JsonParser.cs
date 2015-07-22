@@ -27,7 +27,14 @@ namespace retrospring_win_universal.Web
         {
             ApiResultContainer<T> apiResultRef = new ApiResultContainer<T>();
 
-            ApiResultContainer<T> receivedRes = JsonConvert.DeserializeAnonymousType<ApiResultContainer<T>>(getJson(path), apiResultRef);
+            ApiResultContainer<T> receivedRes = JsonConvert.DeserializeAnonymousType(getJson(path), apiResultRef);
+            
+            if(receivedRes.code != 200)
+            {
+                //TODO: add alternative result for errors and stuff
+                System.Diagnostics.Debug.WriteLine(receivedRes.exception);
+                return default(T);
+            }
 
             return receivedRes.result;
         }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace retrospring_win_universal.Data
 {
-    class AnswerObject : ResultObject
+    class AnswerObject
     {
         public int id { get; set; }
         public string answer { get; set; }

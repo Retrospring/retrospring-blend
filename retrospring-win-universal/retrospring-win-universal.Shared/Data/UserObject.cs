@@ -4,7 +4,7 @@ using System.Text;
 
 namespace retrospring_win_universal.Data
 {
-    class UserObject : ResultObject
+    class UserObject
     {
         public int id { get; set; }
         public string screen_name { get; set; }
@@ -30,7 +30,7 @@ namespace retrospring_win_universal.Data
         public long member_since { get; set; }
     }
 
-    class TrimmedUserObject : ResultObject
+    class TrimmedUserObject
     {
         public int id { get; set; }
         public string screen_name { get; set; }
@@ -42,21 +42,27 @@ namespace retrospring_win_universal.Data
         public bool privacy_allow_stranger_answers { get; set; }
     }
 
-    class AvatarObject : ResultObject
+    class FollowingUserObject
+    {
+        public TrimmedUserObject user { get; set; }
+        public long following_since { get; set; }
+    }
+
+    class AvatarObject
     {
         public string large { get; set; }
         public string medium { get; set; }
         public string small { get; set; }
     }
 
-    class HeaderObject : ResultObject
+    class HeaderObject
     {
         public string web { get; set; }
         public string mobile { get; set; }
         public string retina { get; set; }
     }
 
-    class UserFlagsObject : ResultObject
+    class UserFlagsObject
     {
         public bool admin { get; set; }
         public bool moderator { get; set; }
@@ -67,7 +73,7 @@ namespace retrospring_win_universal.Data
         public bool app_developer { get; set; }
     }
 
-    class UserBannedObject : ResultObject
+    class UserBannedObject
     {
         public bool banned { get; set; }
         public int until { get; set; }
