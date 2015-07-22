@@ -34,17 +34,20 @@ namespace retrospring_win_universal
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            //* === USER
+            /* === USER
             UserObject result = JsonParser.getUserProfile(1);
             debugTextBlock.Text = result.screen_name.ToString();
-            //*/
+            /*/
 
             /* === PUBLIC TIMELINE
             TimelineObject result = JsonParser.getPublicTimeline();
             debugTextBlock.Text = result.count.ToString();
-            */
+            /*/
 
-
+            //* === QUESTION
+            QuestionObject result = JsonParser.getQuestion(1);
+            debugTextBlock.Text = result.question;
+            //*/
         }
     }
 }
