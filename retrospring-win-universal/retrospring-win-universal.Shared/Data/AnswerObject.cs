@@ -17,17 +17,38 @@ namespace retrospring_win_universal.Data
         public AppObject created_with { get; set; }
         public long created_at { get; set; }
 
+        public string answererText
+        {
+            get { return "Answered by " + getActualUser(); }
+        }
+
+        public string questionerText
+        {
+            get { return question.getActualUser() + " asked"; }
+        }
+
+        public QuestionObject question
+        {
+            get { return JsonParser.getQuestion(question_id); }
+        }
+
+        public UserObject getActualUser()
+        {
+            if (user == null)
+            {
+                return JsonParser.getUserProfile(user_id);
+            }
+            else
+            {
+                return JsonParser.getUserProfile(user.id);
+            }
+        }
+
         public override string ToString()
         {
             string answerStr = "";
-            QuestionObject question = JsonParser.getQuestion(question_id);
-            answerStr += "Question: \"" + question.question + "\" \n";
 
-            answerStr += "Answer: \"" + answer + "\"";
-            if (user != null)
-            {
-                answerStr += " - by " + user.screen_name + (user.display_name != null ? (" aka " + user.display_name) : "");
-            }
+            answerStr = "\"" + answer + "\"";
 
             return answerStr;
         }

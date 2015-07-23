@@ -8,7 +8,7 @@ namespace retrospring_win_universal.Data
     {
         public int id { get; set; }
         public string screen_name { get; set; }
-        public string display_name { get; set; }
+        public string display_name { get; set; } //optional
         public AvatarObject avatar { get; set; }
         public HeaderObject header { get; set; }
         public string motivation_header { get; set; }
@@ -28,24 +28,64 @@ namespace retrospring_win_universal.Data
         public bool allow_anonymous_questions { get; set; }
         public bool allow_stranger_answers { get; set; }
         public long member_since { get; set; }
+
+        public TrimmedUserObject toTrimmedUser()
+        {
+            TrimmedUserObject tuo = new TrimmedUserObject();
+            tuo.id = id;
+            tuo.screen_name = screen_name;
+            tuo.display_name = display_name;
+            tuo.avatar = avatar.medium;
+            tuo.header = header.web;
+            tuo.flags = flags;
+            tuo.banned = banned.banned;
+            tuo.privacy_allow_stranger_answers = allow_stranger_answers; //???
+
+            return tuo;
+        }
+
+        public override string ToString()
+        {
+            return display_name != null ? display_name : screen_name;
+        }
+    }
+
+    class AnonymousUserObject : UserObject
+    {
+        public AnonymousUserObject()
+        {
+            id = -1;
+            screen_name = "Anonymous";
+            //TODO: avatar, header to default
+        }
     }
 
     class TrimmedUserObject
     {
         public int id { get; set; }
         public string screen_name { get; set; }
-        public string display_name { get; set; }
+        public string display_name { get; set; } //optional
         public string avatar { get; set; }
         public string header { get; set; }
         public UserFlagsObject flags { get; set; }
         public bool banned { get; set; }
         public bool privacy_allow_stranger_answers { get; set; }
+
+        public override string ToString()
+        {
+            return display_name != null ? display_name : screen_name;
+        }
     }
 
     class FollowingUserObject
     {
         public TrimmedUserObject user { get; set; }
         public long following_since { get; set; }
+
+        public override string ToString()
+        {
+            return user.ToString();
+        }
     }
 
     class AvatarObject

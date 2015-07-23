@@ -7,23 +7,57 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
+    <Grid>
+        <Pivot Title="Retrospring">
+            <PivotItem Header="Timeline">
+                <Grid>
+                    <ListView x:Name="timelineListView" ItemsSource="{Binding}" >
+                        <ListView.Resources>
+                            <DataTemplate x:Key="DataTemplate1">
+                                <Border Background="White" BorderThickness="2,2,2,2">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <!-- TODO: avatar -->
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding questionerText}" />
+                                                <TextBlock Text="{Binding question}" FontSize="12" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                        <TextBlock Text="{Binding answer}" FontSize="16" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <!-- TODO: avatar -->
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding answererText}" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.Resources>
+                        <ListView.ItemTemplate>
+                            <StaticResource ResourceKey="DataTemplate1"/>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="Inbox">
+                <Grid/>
+            </PivotItem>
+            <PivotItem Header="Notifications">
+                <Grid/>
+            </PivotItem>
+            <PivotItem Header="Discover">
+                <Grid/>
+            </PivotItem>
+        </Pivot>
+
+        <TextBlock x:Name="debugTextBlock" HorizontalAlignment="Left" Margin="20,106,0,0" TextWrapping="Wrap" Text="Debug!" VerticalAlignment="Top" Foreground="Red"/>
+    </Grid>
+
     <Page.BottomAppBar>
         <CommandBar>
             <AppBarButton Icon="Refresh" Label="Refresh (DEBUG)" Click="AppBarButton_Click"/>
         </CommandBar>
     </Page.BottomAppBar>
-
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="47*"/>
-            <RowDefinition Height="243*"/>
-        </Grid.RowDefinitions>
-
-        <TextBlock x:Name="debugTextBlock" HorizontalAlignment="Left" Margin="20,81,0,0" TextWrapping="Wrap" Text="Debug!" VerticalAlignment="Top" Foreground="Red" Grid.RowSpan="2"/>
-        <ListView x:Name="timelineListView" Grid.Row="1" ItemsSource="{Binding}">
-            <ListViewItem FontSize="16" />
-        </ListView>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,5,0,0" TextWrapping="Wrap" Text="Retrospring" VerticalAlignment="Top" Style="{StaticResource HeaderTextBlockStyle}"/>
-
-    </Grid>
 </Page>
