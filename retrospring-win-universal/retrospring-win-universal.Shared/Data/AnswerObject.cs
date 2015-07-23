@@ -1,4 +1,5 @@
-﻿using System;
+﻿using retrospring_win_universal.Web;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -19,11 +20,13 @@ namespace retrospring_win_universal.Data
         public override string ToString()
         {
             string answerStr = "";
-            answerStr += "(id: " + id + ") ";
-            answerStr += "\"" + answer + "\"";
+            QuestionObject question = JsonParser.getQuestion(question_id);
+            answerStr += "Question: \"" + question.question + "\" \n";
+
+            answerStr += "Answer: \"" + answer + "\"";
             if (user != null)
             {
-                answerStr += " - by " + user.screen_name + (user.display_name != null ? user.display_name : "");
+                answerStr += " - by " + user.screen_name + (user.display_name != null ? (" aka " + user.display_name) : "");
             }
 
             return answerStr;

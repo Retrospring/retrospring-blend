@@ -1,4 +1,6 @@
-﻿using System;
+﻿using retrospring_win_universal.Web;
+using retrospring_win_universal.Data;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -43,6 +45,41 @@ namespace retrospring_win_universal
             // Windows.Phone.UI.Input.HardwareButtons.BackPressed event.
             // If you are using the NavigationHelper provided by some templates,
             // this event is handled for you.
+        }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            /* === USER
+            UserObject result = JsonParser.getUserProfile(1);
+            debugTextBlock.Text = result.screen_name.ToString();
+            /*/
+
+            //* === PUBLIC TIMELINE
+            TimelineObject result = JsonParser.getPublicTimeline();
+            debugTextBlock.Text = "Loaded public timeline.";
+            
+            timelineListView.DataContext = result.answers;
+            //*/
+
+            /* === QUESTION
+            QuestionObject result = JsonParser.getQuestion(1);
+            debugTextBlock.Text = result.question;
+            /*/
+
+            /* === ANSWER
+            AnswerObject result = JsonParser.getAnswer(1);
+            debugTextBlock.Text = result.answer;
+            /*/
+
+            /* === FOLLOWER
+            FollowerObject result = JsonParser.getUserFollower(1);
+            debugTextBlock.Text = result.count.ToString();
+            /*/
+
+            /* === FOLLOWING
+            FollowingObject result = JsonParser.getUserFollowing(1);
+            debugTextBlock.Text = result.count.ToString();
+            /*/
         }
     }
 }
