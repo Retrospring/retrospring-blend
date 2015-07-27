@@ -7,38 +7,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    
+
     <Grid>
         <Pivot Title="Retrospring">
             <PivotItem Header="Timeline">
                 <Grid>
-                    <ListView x:Name="timelineListView" ItemsSource="{Binding}" >
-                        <ListView.Resources>
-                            <DataTemplate x:Key="DataTemplate1">
-                                <Border Background="White" BorderThickness="2,2,2,2">
-                                    <StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <!-- TODO: avatar -->
-                                            <StackPanel>
-                                                <TextBlock Text="{Binding questionerText}" />
-                                                <TextBlock Text="{Binding question}" FontSize="12" />
-                                            </StackPanel>
-                                        </StackPanel>
-                                        <TextBlock Text="{Binding answer}" FontSize="16" />
-                                        <StackPanel Orientation="Horizontal">
-                                            <!-- TODO: avatar -->
-                                            <StackPanel>
-                                                <TextBlock Text="{Binding answererText}" />
-                                            </StackPanel>
-                                        </StackPanel>
-                                    </StackPanel>
-                                </Border>
-                            </DataTemplate>
-                        </ListView.Resources>
-                        <ListView.ItemTemplate>
-                            <StaticResource ResourceKey="DataTemplate1"/>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                    <ListView x:Name="timelineListView" ItemsSource="{Binding timelineItems}" />
                 </Grid>
             </PivotItem>
             <PivotItem Header="Inbox">
@@ -53,6 +27,7 @@
         </Pivot>
 
         <TextBlock x:Name="debugTextBlock" HorizontalAlignment="Left" Margin="20,106,0,0" TextWrapping="Wrap" Text="Debug!" VerticalAlignment="Top" Foreground="Red"/>
+        <ProgressRing x:Name="progressRing" HorizontalAlignment="Left" Margin="323,137,0,0" VerticalAlignment="Top"/>
     </Grid>
 
     <Page.BottomAppBar>

@@ -49,37 +49,15 @@ namespace retrospring_win_universal
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            /* === USER
-            UserObject result = JsonParser.getUserProfile(1);
-            debugTextBlock.Text = result.screen_name.ToString();
-            /*/
+            /*progressRing.IsActive = true;
 
-            //* === PUBLIC TIMELINE
-            TimelineObject result = JsonParser.getPublicTimeline();
-            debugTextBlock.Text = "Loaded public timeline.";
+            TimelineObject result = await JsonParser.getPublicTimeline();
+
+            progressRing.IsActive = false;
             
-            timelineListView.DataContext = result.answers;
-            //*/
+            timelineListView.DataContext = result.answers;*/
 
-            /* === QUESTION
-            QuestionObject result = JsonParser.getQuestion(1);
-            debugTextBlock.Text = result.question;
-            /*/
-
-            /* === ANSWER
-            AnswerObject result = JsonParser.getAnswer(1);
-            debugTextBlock.Text = result.answer;
-            /*/
-
-            /* === FOLLOWER
-            FollowerObject result = JsonParser.getUserFollower(1);
-            debugTextBlock.Text = result.count.ToString();
-            /*/
-
-            /* === FOLLOWING
-            FollowingObject result = JsonParser.getUserFollowing(1);
-            debugTextBlock.Text = result.count.ToString();
-            /*/
+            debugTextBlock.Text = "Loaded public timeline.";
         }
     }
 }
