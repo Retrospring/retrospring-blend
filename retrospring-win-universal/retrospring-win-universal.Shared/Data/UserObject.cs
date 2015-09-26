@@ -42,6 +42,15 @@ namespace retrospring_win_universal.Data
         }
     }
 
+    class AnonymousUserObject : UserObject
+    {
+        public AnonymousUserObject()
+        {
+            Id = -1;
+            ScreenName = "Anonymous Coward";
+        }
+    }
+
     class AvatarObject
     {
         public string Large { get; set; }

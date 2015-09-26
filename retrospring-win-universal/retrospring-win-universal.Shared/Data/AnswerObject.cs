@@ -14,10 +14,5 @@ namespace retrospring_win_universal.Data
         public QuestionObject Question { get; set; }
         public ApplicationRefObject CreatedWith { get; set; }
         public long CreatedAt { get; set; }
-
-        public override string ToString()
-        {
-            return Answerer + ": \"" + Answer + "\"";
-        }
     }
 }
