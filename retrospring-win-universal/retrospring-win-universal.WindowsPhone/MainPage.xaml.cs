@@ -59,11 +59,11 @@ namespace retrospring_win_universal
 
             progressRing.IsActive = true;
 
-            TimelineObject result = JsonParser.LoadPublicTimeline();
+            //TimelineObject result = JsonParser.LoadPublicTimeline();
 
             progressRing.IsActive = false;
 
-            timelineListView.DataContext = result.Answers;
+            //timelineListView.DataContext = result.Answers;
 
             debugTextBlock.Text = "Loaded public timeline.";
         }

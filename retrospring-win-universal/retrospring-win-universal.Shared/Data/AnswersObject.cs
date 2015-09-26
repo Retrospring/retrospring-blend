@@ -4,9 +4,10 @@ using System.Text;
 
 namespace retrospring_win_universal.Data
 {
-    class TimelineObject
+    class AnswersObject
     {
         public int Count { get; set; }
+        public string Next { get; set; }
         public List<AnswerObject> Answers { get; set; }
     }
 }

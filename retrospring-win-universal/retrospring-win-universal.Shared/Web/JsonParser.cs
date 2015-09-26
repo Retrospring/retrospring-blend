@@ -13,11 +13,13 @@ namespace retrospring_win_universal.Web
 {
     class JsonParser
     {
+        public const string BASE_URL = "https://science.retrospring.net/api/sleipnir/";
+
         private static dynamic GetResultFromURL(string parameter)
         {
             using (HttpClient client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://science.retrospring.net/api/sleipnir/");
+                client.BaseAddress = new Uri(BASE_URL);
 
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -39,64 +41,66 @@ namespace retrospring_win_universal.Web
             }
         }
 
-        public static TimelineObject LoadPublicTimeline()
+        public static AnswersObject GetPublicTimeline()
         {
-            dynamic timeline = GetResultFromURL("user/public.json");
+            dynamic publicTLobj = GetResultFromURL("user/public.json");
 
-            if (timeline == null) return null;
+            AnswersObject timeline = new AnswersObject();
 
-            TimelineObject tl = new TimelineObject();
-            tl.Count = timeline.count;
+            timeline.Count = publicTLobj.count;
 
             List<AnswerObject> answers = new List<AnswerObject>();
-            foreach (var answer in timeline.answers)
+            foreach(var answer in publicTLobj.answers)
             {
                 UserObject answerer = new UserObject()
                 {
                     Id = answer.user.id,
                     ScreenName = answer.user.screen_name,
                     OptionalName = answer.user.display_name,
-                    IsBanned = answer.user.banned
+                    Banned = new UserBannedObject()
+                    {
+                        IsBanned = answer.user.banned
+                    }
                 };
 
-                QuestionObject question = LoadAndGetQuestion(answer.question_id);
+                UserObject questionerer = null;
+                if (answer.question.user != null)
+                {
+                    questionerer = new UserObject()
+                    {
+                        Id = answer.question.user.id,
+                        ScreenName = answer.question.user.screen_name,
+                        OptionalName = answer.question.user.display_name,
+                        Banned = new UserBannedObject()
+                        {
+                            IsBanned = answer.question.user.banned
+                        }
+                    };
+                }
+
+                QuestionObject question = new QuestionObject()
+                {
+                    Id = answer.question.id,
+                    Question = answer.question.question,
+                    AnswerCount = answer.question.answer_count,
+                    IsAnonymous = answer.question.anonymous,
+                    Questioner = questionerer
+                };
 
                 answers.Add(new AnswerObject()
                 {
                     Id = answer.id,
                     Answer = answer.answer,
+                    CommentCount = answer.comment_count,
+                    SmileCount = answer.smile_count,
                     Answerer = answerer,
-                    CreatedAt = answer.created_at,
                     Question = question
                 });
             }
 
-            tl.Answers = answers;
+            timeline.Answers = answers;
 
-            return tl;
-        }
-
-        public static QuestionObject LoadAndGetQuestion(dynamic id)
-        {
-            dynamic question = GetResultFromURL("question/" + id + ".json");
-
-            /*UserObject questioner = new UserObject()
-            {
-                Id = question.user.id,
-                ScreenName = question.user.screen_name,
-                OptionalName = question.user.display_name,
-                IsBanned = question.user.banned
-            };*/
-
-            QuestionObject qu = new QuestionObject()
-            {
-                Id = question.id,
-                Question = question.question,
-                AnswerCount = question.answer_count
-                //Questioner = questioner
-            };
-
-            return qu;
+            return timeline;
         }
     }
 }

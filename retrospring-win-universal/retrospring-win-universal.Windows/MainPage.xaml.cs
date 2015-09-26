@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Diagnostics;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -35,6 +36,11 @@ namespace retrospring_win_universal
         private void button_Click(object sender, RoutedEventArgs e)
         {
             //see mobile app
+            AnswersObject tl = JsonParser.GetPublicTimeline();
+
+            timelineGridView.DataContext = tl.Answers;
+
+            debugTextBlock.Text = "Timeline loaded. (Count: " + tl.Count + ")";
         }
     }
 }

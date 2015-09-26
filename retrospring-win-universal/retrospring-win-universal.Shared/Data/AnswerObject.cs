@@ -12,7 +12,7 @@ namespace retrospring_win_universal.Data
         public int SmileCount { get; set; }
         public UserObject Answerer { get; set; }
         public QuestionObject Question { get; set; }
-        // created with
+        public ApplicationRefObject CreatedWith { get; set; }
         public long CreatedAt { get; set; }
 
         public override string ToString()

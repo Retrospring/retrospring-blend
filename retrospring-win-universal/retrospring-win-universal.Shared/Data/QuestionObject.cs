@@ -11,7 +11,7 @@ namespace retrospring_win_universal.Data
         public int AnswerCount { get; set; }
         public bool IsAnonymous { get; set; }
         public UserObject Questioner { get; set; }
-        // created with
+        public ApplicationRefObject CreatedWith { get; set; }
         public long CreatedAt { get; set; }
     }
 }
