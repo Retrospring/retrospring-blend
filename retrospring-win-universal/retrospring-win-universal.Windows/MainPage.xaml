@@ -6,24 +6,31 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    
     <Page.Resources>
         <DataTemplate x:Key="AnswersDataTemplate">
-            <StackPanel>
-                <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="12">
-                    <Run Text="{Binding Question.Questioner}" />
-                    <Run Text=" asked" />
-                </TextBlock>
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="NoWrap" FontSize="13.333">
-                    <Run Text="{Binding Question.Question}" />
-                </TextBlock>
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="NoWrap" Margin="0,10,0,0">
+            <Border BorderBrush="White" BorderThickness="1" Width="300" Height="180">
+                <StackPanel>
+                    <Border Background="Gray">
+                        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="12" Foreground="Black" Margin="5,0">
+                        <Run Text="{Binding Question.Questioner}" />
+                        <Run Text=" asked" />
+                        </TextBlock>
+                    </Border>
+                    <Border Background="Gray">
+                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="NoWrap" FontSize="13.333" Foreground="Black" Margin="5,0">
+                        <Run Text="{Binding Question.Question}" />
+                        </TextBlock>
+                    </Border>
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="NoWrap" Margin="5,10,5,0">
                     <Run Text="{Binding Answer}" />
-                </TextBlock>
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="NoWrap" FontSize="12">
+                    </TextBlock>
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="NoWrap" FontSize="12" Margin="5,0,5,5">
                     <Run Text="Answered by " />
                     <Run Text="{Binding Answerer}" />
-                </TextBlock>
-            </StackPanel>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
         </DataTemplate>
     </Page.Resources>
 
@@ -39,6 +46,6 @@
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="30,45,0,0" TextWrapping="Wrap" Text="Retrospring" VerticalAlignment="Top" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1"/>
         <TextBlock x:Name="debugTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="463,53,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Style="{StaticResource BodyTextBlockStyle}"/>
         <Button x:Name="button" Grid.Column="1" Content="Load Stuff" HorizontalAlignment="Left" Margin="345,50,0,0" VerticalAlignment="Top" Click="button_Click"/>
-        <GridView x:Name="timelineGridView" ItemsSource="{Binding}" Grid.Column="1" Grid.Row="1" ItemTemplate="{StaticResource AnswersDataTemplate}"/>
+        <GridView x:Name="timelineView" Grid.Column="1" Grid.Row="1" ItemsSource="{Binding}" ItemTemplate="{StaticResource AnswersDataTemplate}"/>
     </Grid>
 </Page>

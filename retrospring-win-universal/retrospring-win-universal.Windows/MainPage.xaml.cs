@@ -38,7 +38,7 @@ namespace retrospring_win_universal
             //see mobile app
             AnswersObject tl = JsonParser.GetPublicTimeline();
 
-            timelineGridView.DataContext = tl.Answers;
+            timelineView.DataContext = tl.Answers;
 
             debugTextBlock.Text = "Timeline loaded. (Count: " + tl.Count + ")";
         }
