@@ -40,7 +40,7 @@ namespace retrospring_win_universal
 
             timelineView.DataContext = tl;
 
-            //debugTextBlock.Text = "Timeline loaded. (Count: " + tl.Count + ")";
+            debugTextBlock.Text = "Timeline loaded. (Count: " + tl.Count + ")";
         }
     }
 }

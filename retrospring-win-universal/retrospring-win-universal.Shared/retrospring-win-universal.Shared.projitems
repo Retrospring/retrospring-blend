@@ -16,6 +16,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Data\AnswerObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\FollowingsObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\FollowersObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\FollowObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\QuestionsObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\ApplicationRefObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\QuestionObject.cs" />

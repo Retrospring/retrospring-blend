@@ -13,24 +13,25 @@
                 <StackPanel>
                     <Border Background="Gray">
                         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="12" Foreground="Black" Margin="5,0">
-                        <!--<Run Text="{Binding Question.Questioner}" />-->
                             <Hyperlink Foreground="#FF500087">
                                 <Run Text="{Binding Question.Questioner}" />
                             </Hyperlink>
-                            <Run Text=" asked" />
+                            <Run Text="asked" />
                         </TextBlock>
                     </Border>
                     <Border Background="Gray">
                         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="NoWrap" FontSize="13.333" Foreground="Black" Margin="5,0">
-                        <Run Text="{Binding Question.Question}" />
+                            <Run Text="{Binding Question.Question}" />
                         </TextBlock>
                     </Border>
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="NoWrap" Margin="5,10,5,0">
-                    <Run Text="{Binding Answer}" />
+                        <Run Text="{Binding Answer}" />
                     </TextBlock>
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="NoWrap" FontSize="12" Margin="5,0,5,5">
-                    <Run Text="Answered by " />
-                    <Run Text="{Binding Answerer}" />
+                        <Run Text="Answered by" />
+                        <Hyperlink>
+                            <Run Text="{Binding Answerer}" />
+                        </Hyperlink>
                     </TextBlock>
                 </StackPanel>
             </Border>
@@ -51,6 +52,7 @@
         <TextBlock x:Name="textBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,52,0,0" Text="Retrospring" VerticalAlignment="Top" Style="{StaticResource HeaderTextBlockStyle}"/>
         <Button x:Name="button" Content="Load Stuff" Grid.Column="1" HorizontalAlignment="Left" Margin="321,57,0,0" VerticalAlignment="Top" Click="button_Click"/>
         <GridView x:Name="timelineView" Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Answers}" ItemTemplate="{StaticResource AnswersDataTemplate}" SelectionMode="None"/>
+        <TextBlock x:Name="debugTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="442,67,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" FontSize="16"/>
 
     </Grid>
 </Page>
