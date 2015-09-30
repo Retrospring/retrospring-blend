@@ -6,15 +6,18 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    
+
     <Page.Resources>
         <DataTemplate x:Key="AnswersDataTemplate">
-            <Border BorderBrush="White" BorderThickness="1" Width="300" Height="180">
+            <Border BorderBrush="White" BorderThickness="1" Width="300" MinHeight="150">
                 <StackPanel>
                     <Border Background="Gray">
                         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="12" Foreground="Black" Margin="5,0">
-                        <Run Text="{Binding Question.Questioner}" />
-                        <Run Text=" asked" />
+                        <!--<Run Text="{Binding Question.Questioner}" />-->
+                            <Hyperlink Foreground="#FF500087">
+                                <Run Text="{Binding Question.Questioner}" />
+                            </Hyperlink>
+                            <Run Text=" asked" />
                         </TextBlock>
                     </Border>
                     <Border Background="Gray">
@@ -34,18 +37,20 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="12*"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="6*"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="30,45,0,0" TextWrapping="Wrap" Text="Retrospring" VerticalAlignment="Top" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1"/>
-        <TextBlock x:Name="debugTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="463,53,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Style="{StaticResource BodyTextBlockStyle}"/>
-        <Button x:Name="button" Grid.Column="1" Content="Load Stuff" HorizontalAlignment="Left" Margin="345,50,0,0" VerticalAlignment="Top" Click="button_Click"/>
-        <GridView x:Name="timelineView" Grid.Column="1" Grid.Row="1" ItemsSource="{Binding}" ItemTemplate="{StaticResource AnswersDataTemplate}"/>
+
+        <TextBlock x:Name="textBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,52,0,0" Text="Retrospring" VerticalAlignment="Top" Style="{StaticResource HeaderTextBlockStyle}"/>
+        <Button x:Name="button" Content="Load Stuff" Grid.Column="1" HorizontalAlignment="Left" Margin="321,57,0,0" VerticalAlignment="Top" Click="button_Click"/>
+        <GridView x:Name="timelineView" Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Answers}" ItemTemplate="{StaticResource AnswersDataTemplate}" SelectionMode="None"/>
+
     </Grid>
 </Page>

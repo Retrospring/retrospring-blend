@@ -6,6 +6,23 @@ namespace retrospring_win_universal.Data
 {
     class AnswerObject
     {
+        public static AnswerObject fromDynamic(dynamic ansData)
+        {
+            AnswerObject answer = new AnswerObject()
+            {
+                Id = ansData.id,
+                Answer = ansData.answer,
+                CommentCount = ansData.comment_count,
+                SmileCount = ansData.smile_count,
+                Answerer = UserObject.fromDynamicSlim(ansData.user),
+                Question = QuestionObject.fromDynamic(ansData.question),
+                CreatedWith = ApplicationRefObject.fromDynamic(ansData.created_with),
+                CreatedAt = ansData.created_at
+            };
+
+            return answer;
+        }
+
         public int Id { get; set; }
         public string Answer { get; set; }
         public int CommentCount { get; set; }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using retrospring_win_universal.Data;
+using System.Collections.ObjectModel;
 
 namespace retrospring_win_universal.Web
 {
@@ -30,12 +31,6 @@ namespace retrospring_win_universal.Web
 
                     dynamic result = JObject.Load(reader);
 
-                    // structure of the result should be:
-                    // bool success
-                    // int code
-                    // object result
-                    // (some exception stuff)
-
                     return result.result;
                 }
             }
@@ -49,53 +44,10 @@ namespace retrospring_win_universal.Web
 
             timeline.Count = publicTLobj.count;
 
-            List<AnswerObject> answers = new List<AnswerObject>();
+            ObservableCollection<AnswerObject> answers = new ObservableCollection<AnswerObject>();
             foreach(var answer in publicTLobj.answers)
             {
-                UserObject answerer = new UserObject()
-                {
-                    Id = answer.user.id,
-                    ScreenName = answer.user.screen_name,
-                    OptionalName = answer.user.display_name,
-                    Banned = new UserBannedObject()
-                    {
-                        IsBanned = answer.user.banned
-                    }
-                };
-
-                UserObject questionerer = null;
-                if (answer.question.user != null)
-                {
-                    questionerer = new UserObject()
-                    {
-                        Id = answer.question.user.id,
-                        ScreenName = answer.question.user.screen_name,
-                        OptionalName = answer.question.user.display_name,
-                        Banned = new UserBannedObject()
-                        {
-                            IsBanned = answer.question.user.banned
-                        }
-                    };
-                }
-
-                QuestionObject question = new QuestionObject()
-                {
-                    Id = answer.question.id,
-                    Question = answer.question.question,
-                    AnswerCount = answer.question.answer_count,
-                    IsAnonymous = answer.question.anonymous,
-                    Questioner = questionerer
-                };
-
-                answers.Add(new AnswerObject()
-                {
-                    Id = answer.id,
-                    Answer = answer.answer,
-                    CommentCount = answer.comment_count,
-                    SmileCount = answer.smile_count,
-                    Answerer = answerer,
-                    Question = question
-                });
+                answers.Add(AnswerObject.fromDynamic(answer));
             }
 
             timeline.Answers = answers;
