@@ -7,16 +7,16 @@ using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json.Linq;
-using retrospring_win_universal.Data;
+using retrospring_win_universal.Data.DataObjects;
 using System.Collections.ObjectModel;
 
 namespace retrospring_win_universal.Web
 {
-    class JsonParser
+    class JsonConnector
     {
         public const string BASE_URL = "https://science.retrospring.net/api/sleipnir/";
 
-        private static dynamic GetResultFromURL(string parameter)
+        private async static Task<dynamic> GetResultFromURL(string parameter)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -25,7 +25,7 @@ namespace retrospring_win_universal.Web
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 
-                using(Stream stream = client.GetStreamAsync(parameter).Result)
+                using(Stream stream = await client.GetStreamAsync(parameter))
                 {
                     JsonReader reader = new JsonTextReader(new StreamReader(stream));
 
@@ -36,9 +36,9 @@ namespace retrospring_win_universal.Web
             }
         }
 
-        public static AnswersObject GetPublicTimeline()
+        public async static Task<AnswersObject> GetPublicTimeline()
         {
-            dynamic publicTLobj = GetResultFromURL("user/public.json");
+            dynamic publicTLobj = await GetResultFromURL("user/public.json");
 
             AnswersObject timeline = new AnswersObject();
 

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace retrospring_win_universal.Data
+namespace retrospring_win_universal.Data.DataObjects
 {
-    class QuestionObject
+    public class QuestionObject
     {
         public static QuestionObject fromDynamic(dynamic quData)
         {

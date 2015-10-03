@@ -12,7 +12,7 @@
         <Pivot Title="Retrospring">
             <PivotItem Header="Timeline">
                 <Grid>
-                    <ListView x:Name="timelineListView" ItemsSource="{Binding timelineItems}" />
+                    <ListView x:Name="timelineListView" ItemsSource="{Binding Answers}" />
                 </Grid>
             </PivotItem>
             <PivotItem Header="Inbox">

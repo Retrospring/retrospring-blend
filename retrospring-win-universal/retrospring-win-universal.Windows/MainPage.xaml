@@ -13,7 +13,7 @@
                 <StackPanel>
                     <Border Background="Gray">
                         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="12" Foreground="Black" Margin="5,0">
-                            <Hyperlink Foreground="#FF500087">
+                            <Hyperlink Foreground="#FF500087" Click="Hyperlink_Click">
                                 <Run Text="{Binding Question.Questioner}" />
                             </Hyperlink>
                             <Run Text="asked" />
@@ -51,8 +51,9 @@
 
         <TextBlock x:Name="textBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,52,0,0" Text="Retrospring" VerticalAlignment="Top" Style="{StaticResource HeaderTextBlockStyle}"/>
         <Button x:Name="button" Content="Load Stuff" Grid.Column="1" HorizontalAlignment="Left" Margin="321,57,0,0" VerticalAlignment="Top" Click="button_Click"/>
-        <GridView x:Name="timelineView" Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Answers}" ItemTemplate="{StaticResource AnswersDataTemplate}" SelectionMode="None"/>
+        <GridView x:Name="timelineView" Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Answers}" ItemTemplate="{StaticResource AnswersDataTemplate}" ItemClick="timelineView_ItemClick" IsItemClickEnabled="True" SelectionMode="None"/>
         <TextBlock x:Name="debugTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="442,67,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" FontSize="16"/>
+        <ProgressRing x:Name="prgringLoading" HorizontalAlignment="Left" Margin="28,30,0,0" VerticalAlignment="Top" Height="70" Width="70"/>
 
     </Grid>
 </Page>

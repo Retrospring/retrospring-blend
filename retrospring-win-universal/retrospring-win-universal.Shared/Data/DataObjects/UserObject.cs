@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.Serialization;
 
-namespace retrospring_win_universal.Data
+namespace retrospring_win_universal.Data.DataObjects
 {
-    class UserObject
+    [XmlInclude(typeof(AnonymousUserObject))]
+    public class UserObject
     {
         protected UserObject()
         {
@@ -124,8 +126,8 @@ namespace retrospring_win_universal.Data
             }
         }
     }
-
-    class AnonymousUserObject : UserObject
+    
+    public class AnonymousUserObject : UserObject
     {
         public AnonymousUserObject()
         {
@@ -134,7 +136,7 @@ namespace retrospring_win_universal.Data
         }
     }
 
-    class AvatarObject
+    public class AvatarObject
     {
         public AvatarObject()
         {
@@ -151,7 +153,7 @@ namespace retrospring_win_universal.Data
         public string Small { get; set; }
     }
 
-    class HeaderObject
+    public class HeaderObject
     {
         public HeaderObject()
         {
@@ -168,7 +170,7 @@ namespace retrospring_win_universal.Data
         public string Retina { get; set; }
     }
 
-    class UserFlagObject
+    public class UserFlagObject
     {
         public UserFlagObject()
         {
@@ -211,7 +213,7 @@ namespace retrospring_win_universal.Data
         public bool AppDeveloper { get; set; }
     }
 
-    class UserBannedObject
+    public class UserBannedObject
     {
         public UserBannedObject()
         {

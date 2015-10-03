@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace retrospring_win_universal.Data
+namespace retrospring_win_universal.Data.DataObjects
 {
-    class AnswerObject
+    public class AnswerObject
     {
         public static AnswerObject fromDynamic(dynamic ansData)
         {

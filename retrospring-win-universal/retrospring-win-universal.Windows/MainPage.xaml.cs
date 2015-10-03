@@ -17,6 +17,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Newtonsoft.Json;
+using retrospring_win_universal.Data.DataObjects;
+using retrospring_win_universal.Common;
 using retrospring_win_universal.Data;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -32,15 +34,38 @@ namespace retrospring_win_universal
         {
             this.InitializeComponent();
         }
-
-        private void button_Click(object sender, RoutedEventArgs e)
+        
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //see mobile app
-            AnswersObject tl = JsonParser.GetPublicTimeline();
+            AnswersObject tl = await DataLoader.DeserializeAndLoad<AnswersObject>("public_timeline.xml");
+            timelineView.DataContext = tl;
+        }
+
+        private async void button_Click(object sender, RoutedEventArgs e)
+        {
+            prgringLoading.IsActive = true;
+
+            AnswersObject tl = await JsonConnector.GetPublicTimeline();
+
+            prgringLoading.IsActive = false;
 
             timelineView.DataContext = tl;
 
+            await DataLoader.SerializeAndSave(typeof(AnswersObject), tl, "public_timeline.xml");
+
             debugTextBlock.Text = "Timeline loaded. (Count: " + tl.Count + ")";
+        }
+
+        private void Hyperlink_Click(Windows.UI.Xaml.Documents.Hyperlink sender, Windows.UI.Xaml.Documents.HyperlinkClickEventArgs args)
+        {
+            Frame.Navigate(typeof(UserDetailPage), null);
+        }
+
+        private void timelineView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            AnswerObject answerObj = (AnswerObject) e.ClickedItem;
+            debugTextBlock.Text = "Should be switching pages to answer";
+            Frame.Navigate(typeof(AnswerDetailPage), answerObj);
         }
     }
 }

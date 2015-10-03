@@ -15,15 +15,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Data\AnswerObject.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Data\FollowingsObject.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Data\FollowersObject.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Data\FollowObject.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Data\QuestionsObject.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Data\ApplicationRefObject.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Data\QuestionObject.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Data\AnswersObject.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Data\UserObject.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Web\JsonParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataLoader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataObjects\AnswerObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataObjects\AnswersObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataObjects\ApplicationRefObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataObjects\FollowersObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataObjects\FollowingsObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataObjects\FollowObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataObjects\QuestionObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataObjects\QuestionsObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataObjects\UserObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Web\JsonConnector.cs" />
   </ItemGroup>
 </Project>
