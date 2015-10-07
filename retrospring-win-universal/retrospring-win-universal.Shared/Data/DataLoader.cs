@@ -11,9 +11,9 @@ namespace retrospring_win_universal.Data
 {
     class DataLoader
     {
-        public async static Task SerializeAndSave(Type typeToSave, object objToSave, string filename)
+        public async static Task SerializeAndSave<T>(object objToSave, string filename)
         {
-            XmlSerializer serializer = new XmlSerializer(typeToSave);
+            XmlSerializer serializer = new XmlSerializer(typeof(T));
 
             StorageFolder folder = ApplicationData.Current.LocalFolder;
             using (Stream stream = await folder.OpenStreamForWriteAsync(filename, CreationCollisionOption.ReplaceExisting))

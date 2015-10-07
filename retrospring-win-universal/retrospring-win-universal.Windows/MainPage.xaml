@@ -6,34 +6,51 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
     <Page.Resources>
         <DataTemplate x:Key="AnswersDataTemplate">
-            <Border BorderBrush="White" BorderThickness="1" Width="300" MinHeight="150">
-                <StackPanel>
-                    <Border Background="Gray">
-                        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="12" Foreground="Black" Margin="5,0">
-                            <Hyperlink Foreground="#FF500087" Click="Hyperlink_Click">
-                                <Run Text="{Binding Question.Questioner}" />
-                            </Hyperlink>
-                            <Run Text="asked" />
+            <Border BorderBrush="White" BorderThickness="1" Width="300" MinHeight="150" MaxHeight="150">
+                <Grid Background="Black" MaxWidth="300">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="34" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="34" />
+                    </Grid.RowDefinitions>
+                    
+                    <StackPanel x:Name="panelQuestion" Grid.Row="0" Background="#FF939393" Orientation="Horizontal" MinHeight="32">
+                        <Image MaxHeight="{Binding ElementName=panelQuestion, Path=MinHeight}">
+                            <Image.Source>
+                                <BitmapImage UriSource="{Binding Question.Questioner.Avatar.Medium}" />
+                            </Image.Source>
+                        </Image>
+                        <StackPanel>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="12" Foreground="Black" Margin="5,0,5,0">
+    						    <Hyperlink Foreground="#FF500087" Click="Hyperlink_Click">
+    							    <Run Text="{Binding Question.Questioner}" />
+    						    </Hyperlink>
+    						    <Run Text="asked" />
+                            </TextBlock>
+                            <TextBlock Text="{Binding Question.Question}" HorizontalAlignment="Left"
+                                       VerticalAlignment="Top" TextWrapping="Wrap" FontSize="13.333" Foreground="Black" Margin="5,0,5,0" />
+                        </StackPanel>
+                    </StackPanel>
+                    
+                    <TextBlock Grid.Row="1" Text="{Binding Answer}" Margin="5,10,0,5" HorizontalAlignment="Left"
+                               VerticalAlignment="Top" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" />
+                    
+    				<StackPanel Grid.Row="2" x:Name="panelAnswerer" Orientation="Horizontal" MinHeight="32" VerticalAlignment="Bottom">
+                        <Image MaxHeight="{Binding ElementName=panelAnswerer, Path=MinHeight}">
+                            <Image.Source>
+                                <BitmapImage UriSource="{Binding Answerer.Avatar.Medium}" />
+                            </Image.Source>
+                        </Image>
+                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="12" Margin="5,0,5,5">
+    					    <Run Text="Answered by" />
+    					    <Hyperlink>
+    						    <Run Text="{Binding Answerer}" />
+    					    </Hyperlink>
                         </TextBlock>
-                    </Border>
-                    <Border Background="Gray">
-                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="NoWrap" FontSize="13.333" Foreground="Black" Margin="5,0">
-                            <Run Text="{Binding Question.Question}" />
-                        </TextBlock>
-                    </Border>
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="NoWrap" Margin="5,10,5,0">
-                        <Run Text="{Binding Answer}" />
-                    </TextBlock>
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="NoWrap" FontSize="12" Margin="5,0,5,5">
-                        <Run Text="Answered by" />
-                        <Hyperlink>
-                            <Run Text="{Binding Answerer}" />
-                        </Hyperlink>
-                    </TextBlock>
-                </StackPanel>
+                    </StackPanel>
+                </Grid>
             </Border>
         </DataTemplate>
     </Page.Resources>
@@ -50,10 +67,12 @@
         </Grid.RowDefinitions>
 
         <TextBlock x:Name="textBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,52,0,0" Text="Retrospring" VerticalAlignment="Top" Style="{StaticResource HeaderTextBlockStyle}"/>
-        <Button x:Name="button" Content="Load Stuff" Grid.Column="1" HorizontalAlignment="Left" Margin="321,57,0,0" VerticalAlignment="Top" Click="button_Click"/>
+        <Button x:Name="button" Content="Load Stuff" Grid.Column="1" HorizontalAlignment="Left" Margin="321,57,0,0" VerticalAlignment="Top" Click="action_RefreshTimeline"/>
+        <TextBlock x:Name="debugTextBlock" Grid.Column="1" Margin="1083,16,24,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" d:LayoutOverrides="VerticalAlignment, LeftPosition, RightPosition" Foreground="Red" HorizontalAlignment="Right" Text="Debug TextBlock"/>
+
         <GridView x:Name="timelineView" Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Answers}" ItemTemplate="{StaticResource AnswersDataTemplate}" ItemClick="timelineView_ItemClick" IsItemClickEnabled="True" SelectionMode="None"/>
-        <TextBlock x:Name="debugTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="442,67,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" FontSize="16"/>
-        <ProgressRing x:Name="prgringLoading" HorizontalAlignment="Left" Margin="28,30,0,0" VerticalAlignment="Top" Height="70" Width="70"/>
+
+        <ProgressRing x:Name="prgringLoading" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="25"/>
 
     </Grid>
 </Page>

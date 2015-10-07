@@ -122,7 +122,7 @@ namespace retrospring_win_universal.Data.DataObjects
             }
             else
             {
-                return OptionalName + " (" + ScreenName + ")";
+                return OptionalName;// + " (" + ScreenName + ")";
             }
         }
     }
@@ -145,7 +145,9 @@ namespace retrospring_win_universal.Data.DataObjects
 
         public AvatarObject(string defaultVal)
         {
+            Large = defaultVal;
             Medium = defaultVal;
+            Small = defaultVal;
         }
 
         public string Large { get; set; }
@@ -163,6 +165,8 @@ namespace retrospring_win_universal.Data.DataObjects
         public HeaderObject(string defaultVal)
         {
             Web = defaultVal;
+            Mobile = defaultVal;
+            Retina = defaultVal;
         }
 
         public string Web { get; set; }

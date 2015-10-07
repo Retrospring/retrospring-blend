@@ -41,7 +41,7 @@ namespace retrospring_win_universal
             timelineView.DataContext = tl;
         }
 
-        private async void button_Click(object sender, RoutedEventArgs e)
+        private async void action_RefreshTimeline(object sender, RoutedEventArgs e)
         {
             prgringLoading.IsActive = true;
 
@@ -51,13 +51,14 @@ namespace retrospring_win_universal
 
             timelineView.DataContext = tl;
 
-            await DataLoader.SerializeAndSave(typeof(AnswersObject), tl, "public_timeline.xml");
+            await DataLoader.SerializeAndSave<AnswersObject>(tl, "public_timeline.xml");
 
             debugTextBlock.Text = "Timeline loaded. (Count: " + tl.Count + ")";
         }
 
         private void Hyperlink_Click(Windows.UI.Xaml.Documents.Hyperlink sender, Windows.UI.Xaml.Documents.HyperlinkClickEventArgs args)
         {
+            //TODO
             Frame.Navigate(typeof(UserDetailPage), null);
         }
 

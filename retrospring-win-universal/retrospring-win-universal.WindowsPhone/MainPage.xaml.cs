@@ -1,5 +1,5 @@
 ﻿using retrospring_win_universal.Web;
-using retrospring_win_universal.Data;
+using retrospring_win_universal.Data.DataObjects;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -47,19 +47,11 @@ namespace retrospring_win_universal
             // this event is handled for you.
         }
 
-        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        private async void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            /*progressRing.IsActive = true;
-
-            TimelineObject result = await JsonParser.getPublicTimeline();
-
-            progressRing.IsActive = false;
-            
-            timelineListView.DataContext = result.answers;*/
-
             progressRing.IsActive = true;
 
-            AnswersObject result = JsonParser.GetPublicTimeline();
+            AnswersObject result = await JsonConnector.GetPublicTimeline();
 
             progressRing.IsActive = false;
 
