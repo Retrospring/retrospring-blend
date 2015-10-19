@@ -19,6 +19,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Data\DataObjects\AnswerObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DataObjects\AnswersObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DataObjects\ApplicationRefObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataObjects\CommentObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataObjects\CommentsObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DataObjects\FollowersObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DataObjects\FollowingsObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DataObjects\FollowObject.cs" />
